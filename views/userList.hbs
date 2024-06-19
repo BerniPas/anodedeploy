@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h1>
+        Formulario de Usuarios
+    </h1>
+</div>
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each usuario}}
+                <tr>
+                    <th scope="row">{{_id}}</th>
+                    <td>{{ nombre }}</td>
+                    <td>{{ email }}</td>
+                </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+</div>

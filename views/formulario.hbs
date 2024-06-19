@@ -1,0 +1,31 @@
+
+<div class="container mt-5">
+    <h1>
+        Formulario de Registro - Bienvenido {{ nombre }}
+    </h1>
+
+    <h1 style="color: red;">
+        Error: {{ error }}
+    </h1>
+</div>
+
+<div class="container mt-5">
+    <form method="post" action="/user/form">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre </label>
+            <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email: </label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Mínimo de 6 caracteres">
+        </div>
+        <div class="mb-3 text-center ">
+            <button type="submit" class="btn btn-primary w-25">Registrarse</button>
+            <button type="reset" class="btn btn-danger w-25">Borrar Datos</button>
+        </div>
+    </form>
+</div>

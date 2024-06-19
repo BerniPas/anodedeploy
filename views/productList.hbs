@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h1>
+        Stock de Productos
+    </h1>
+</div>
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each producto}}
+                <tr>
+                    <th scope="row">{{_id}}</th>
+                    <td>{{ nombre }}</td>
+                    <td>{{ precio }}</td>
+                    <td>
+                        <img src={{ imagen }} alt="imagen del producto">
+                    </td>
+                    <td>{{ descripcion }}</td>
+                </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+</div>
