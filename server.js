@@ -1,10 +1,12 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
+import app from './index.js';
 dotenv.config();
+
+
 const PORT = process.env.PORT || 8080;
-const app = require('./index');
 
 //conectar a la dabase
-const conexion = require('./database/conexion');
+import conexion from './database/conexion.js';
 
 
 //levantar el server

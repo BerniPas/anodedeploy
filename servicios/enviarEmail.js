@@ -1,15 +1,16 @@
-const nodemailer = require("nodemailer");
-const dotenv = require('dotenv');
+import nodemailer from "nodemailer";
+import dotenv from 'dotenv';
 dotenv.config();
 
 const GMAIL_PASS = process.env.GMAIL_PASS;
+const GMAIL_USER = process.env.GMAIL_PASS;
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true, // Use `true` for port 465, `false` for all other ports
     auth: {
-        user: "pastor.bernal@educacionit.com",
+        user: GMAIL_USER,
         pass: GMAIL_PASS,
     },
 });
@@ -32,4 +33,4 @@ async function enviarMail(nombre, email) {
 
 //main().catch(console.error);
 
-module.exports = enviarMail;
+export default enviarMail;

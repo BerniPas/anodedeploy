@@ -1,15 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const { check } = require('express-validator');
+import express from 'express';
+import { check } from 'express-validator';
 
-const {
+import {
     formProductos,
     registerProductos,
     cardProductos,
     getProductos,
     detalleProductos
-} = require('../controllers/productControllers');
+} from '../controllers/productControllers.js';
 
+const router = express.Router();
 /* 
     responde a la ruta /product
  */
@@ -26,4 +26,4 @@ router.get('/cards', cardProductos)
 router.get('/detalle/:_id', detalleProductos)
 
 
-module.exports = router;
+export default router;

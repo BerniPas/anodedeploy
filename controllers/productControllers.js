@@ -1,9 +1,9 @@
-const { request, response } = require('express')
-const Product = require('../models/productModel')
-const dotenv = require('dotenv')
+import { request, response } from 'express'
+import dotenv from 'dotenv'
 dotenv.config()
-const { validationResult } = require('express-validator');
-const jwt = require('jsonwebtoken');
+import { validationResult } from 'express-validator';
+import jwt from 'jsonwebtoken';
+import Product from '../models/productModel.js'
 
 const formProductos = async (req = request, res = response) => {
 
@@ -131,7 +131,7 @@ const detalleProductos = async (req = request, res = response) => {
     
 }
 
-module.exports = {
+export {
     formProductos,
     registerProductos,
     cardProductos,

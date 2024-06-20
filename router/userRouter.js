@@ -1,8 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const { check, body, query } = require('express-validator');
+import express from 'express';
+import { check } from 'express-validator';
 
-const { 
+import { 
     dameFormulario,
     crearUsuarios,
     loginUsuarios,
@@ -10,8 +9,9 @@ const {
     dameUsuarios,
     actualizarUsuarios,
     eliminarUsuarios,
-} = require('../controllers/userControllers');
+} from '../controllers/userControllers.js';
 
+const router = express.Router();
 
 
 /* 
@@ -49,4 +49,4 @@ router.put('/', actualizarUsuarios);
 router.delete('/', eliminarUsuarios);
 
 
-module.exports = router;
+export default router;

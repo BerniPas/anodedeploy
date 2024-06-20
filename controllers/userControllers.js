@@ -1,11 +1,12 @@
-const { request, response } = require('express');
-const User = require('../models/userModel'); 
-const { validationResult } = require('express-validator');
-const bcrypt = require('bcrypt');
-const enviarMail = require('../servicios/enviarEmail');
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
+import { request, response } from 'express';
+import { validationResult } from 'express-validator';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 dotenv.config();
+
+import User from '../models/userModel.js'; 
+import enviarMail from '../servicios/enviarEmail.js';
 
 
 
@@ -146,7 +147,7 @@ const loginUsuarios = async (req = request, res = response) => {
             expiresIn: '1h'
         });
 
-        res.header('auth-token', token).render('formProductos', { token: token });
+        res.cookie('auth-token', token).render('formProductos');
 
 
     } catch (error) {
@@ -175,7 +176,7 @@ const eliminarUsuarios = (req, res) => {
     })
 }
 
-module.exports = {
+export {
     dameFormulario,
     dameLogin,
     crearUsuarios,
