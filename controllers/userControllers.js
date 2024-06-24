@@ -161,6 +161,12 @@ const loginUsuarios = async (req = request, res = response) => {
 
 }
 
+const cerrarSesion = (req, res) => {
+
+    res.clearCookie('auth-token').render('login');
+
+}
+
 
 
 const actualizarUsuarios = (req, res) => {
@@ -184,4 +190,5 @@ export {
     actualizarUsuarios,
     eliminarUsuarios,
     dameUsuarios,
+    cerrarSesion
 };

@@ -9,6 +9,7 @@ import {
     dameUsuarios,
     actualizarUsuarios,
     eliminarUsuarios,
+    cerrarSesion
 } from '../controllers/userControllers.js';
 
 const router = express.Router();
@@ -40,6 +41,8 @@ router.post('/login', [
     check("email").isEmail(),
     check("password").isString().isLength({min: 6})
 ], loginUsuarios);
+
+router.post('/logout', cerrarSesion);
 
 //U: actualizar un usuario
 router.put('/', actualizarUsuarios);
