@@ -147,7 +147,12 @@ const loginUsuarios = async (req = request, res = response) => {
             expiresIn: '1h'
         });
 
-        res.cookie('auth-token', token).render('formProductos');
+        res.cookie('auth-token', token,
+            {
+                httpOnly: true,
+                maxAge: 60 * 60 * 1000,
+                path: '/'
+            }).render('formProductos');
 
 
     } catch (error) {

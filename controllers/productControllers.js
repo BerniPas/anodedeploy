@@ -131,12 +131,75 @@ const detalleProductos = async (req = request, res = response) => {
     
 }
 
+const updateProductos = async (req, res) => {
+    
+    const idProduct = req.params._id;
+
+    console.log(idProduct);
+
+    try {
+
+        const producto = await Product.findById({_id: idProduct});
+        console.log(producto);
+    
+        const imagen = producto.imagen;
+        const nombre = producto.nombre;
+        const precio = producto.precio;
+        const descripcion = producto.descripcion;
+        
+        console.log(imagen);
+    
+    
+        return res.render('updateForm', {
+            imagen,
+            nombre,
+            precio,
+            descripcion
+        })
+        
+    } catch (error) {
+        console.log(error);
+        return res.render('error', {
+            error: 'No se ha encontrado el producto'
+        })
+    }
+
+}
+
+
+const deleteProductos = async (req, res) => {
+
+    const idProduct = req.params._id;
+
+    console.log(idProduct);
+
+    try {
+
+        const producto = await Product.findByIdAndDelete({_id: idProduct});
+        console.log(producto);
+    
+        return res.render('hecho')
+        
+    } catch (error) {
+        console.log(error);
+        return res.render('error', {
+            error: 'No se ha encontrado el producto'
+        })
+    }
+    
+
+}
+
+
+
 export {
     formProductos,
     registerProductos,
     cardProductos,
     getProductos,
-    detalleProductos
+    detalleProductos,
+    updateProductos,
+    deleteProductos
 }
 
 //by Gustavo
