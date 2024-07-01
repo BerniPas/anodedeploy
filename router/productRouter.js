@@ -7,6 +7,7 @@ import {
     cardProductos,
     getProductos,
     detalleProductos,
+    updateFormProductos,
     updateProductos,
     deleteProductos,
 } from '../controllers/productControllers.js';
@@ -26,8 +27,8 @@ router.post('/', [
 router.get('/productos', getProductos)
 router.get('/cards', cardProductos)
 router.get('/detalle/:_id', detalleProductos)
-
-router.get('/updateForm/:_id', updateProductos);
+router.get('/updateForm/:_id', updateFormProductos);
+router.post('/update/:_id', updateProductos);
 router.post('/delete/:_id', deleteProductos);
 
 

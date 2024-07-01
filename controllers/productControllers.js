@@ -4,6 +4,9 @@ dotenv.config()
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import Product from '../models/productModel.js'
+import conexion from '../database/conexion.js';
+
+
 
 const formProductos = async (req = request, res = response) => {
 
@@ -83,14 +86,28 @@ const registerProductos = async (req = request, res = response) => {
 
 
 const cardProductos = async (req = request, res = response) => {
-    
-    const producto = await Product.find();
-    
-    console.log(producto);
-    
-    res.render('cardsProductos', {
-        producto
-        });
+    //conectamos la database
+    await conexion.open();
+
+    try {
+        
+        const producto = await Product.find();
+        
+        console.log(producto);
+        
+        res.render('cardsProductos', {
+            producto
+            });
+    } catch (error) {
+        console.log(error);
+        return res.render('error', {
+            error: 'No se ha encontrado el producto'
+        })
+    } finally {
+        console.log('Consulta exitosa');
+        //cerramos la conexión
+        //await conexion.close();
+    }
         
 }
 
@@ -131,7 +148,7 @@ const detalleProductos = async (req = request, res = response) => {
     
 }
 
-const updateProductos = async (req, res) => {
+const updateFormProductos = async (req, res) => {
     
     const idProduct = req.params._id;
 
@@ -142,6 +159,7 @@ const updateProductos = async (req, res) => {
         const producto = await Product.findById({_id: idProduct});
         console.log(producto);
     
+        const _id = producto._id;
         const imagen = producto.imagen;
         const nombre = producto.nombre;
         const precio = producto.precio;
@@ -151,6 +169,7 @@ const updateProductos = async (req, res) => {
     
     
         return res.render('updateForm', {
+            _id,
             imagen,
             nombre,
             precio,
@@ -186,10 +205,41 @@ const deleteProductos = async (req, res) => {
             error: 'No se ha encontrado el producto'
         })
     }
-    
 
 }
 
+const updateProductos = async (req, res) => {
+    const idProduct = req.params._id;
+
+/*     const producto = {
+        _id: idProduct,
+        nombre: req.body.nombre,
+        precio: req.body.precio,
+        ...
+    } */
+
+    console.log(idProduct);
+
+    try {
+
+        const producto = await Product.findByIdAndUpdate({_id: idProduct}, req.body, {new: true});
+        console.log(producto);
+    
+        return res.render('index')
+        
+    } catch (error) {
+        console.log(error);
+        return res.render('error', {
+            error: 'No se ha encontrado el producto'
+        })
+    } finally {
+        console.log('Actualización exitosa');
+
+        //cerramos la conexión
+        //await conexion.close();
+    }
+
+}
 
 
 export {
@@ -198,6 +248,7 @@ export {
     cardProductos,
     getProductos,
     detalleProductos,
+    updateFormProductos,
     updateProductos,
     deleteProductos
 }

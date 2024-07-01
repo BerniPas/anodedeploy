@@ -23,7 +23,7 @@ hbs.registerPartials('views/partials');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
-app.use(express.static(path.join('/public')));
+app.use(express.static(path.join('./public')));
 
 //utilizamos el router como un middleware
 app.use('/user', userRouter);

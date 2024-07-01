@@ -3,6 +3,3 @@ const saludo = () => {
 }
 
 
-const pod = document.getElementById('pod');
-
-pod.addEventListener('click', saludo);

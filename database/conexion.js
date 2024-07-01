@@ -29,5 +29,22 @@ const conexion = mongoose.connect(MONGO_ATLAS, clientOptions)
         }
 );
 
+//creamos una función para abrir la conexión
+conexion.open = async () => {
+    await mongoose.connect(MONGO_ATLAS, clientOptions);
+    console.log('==========================================');
+    console.log('Conexión abierta');
+    console.log('==========================================');
+}
+
+//creamos una función para cerrar la conexión
+conexion.close = async () => {
+    await mongoose.connection.close();
+    console.log('==========================================');
+    console.log('Conexión cerrada');
+    console.log('==========================================');
+}
+
+
 export default conexion;
 
